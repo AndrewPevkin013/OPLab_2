@@ -45,9 +45,9 @@ public:
   }
 
   void print() const {
-    cout << "Square coordinates: (" << this->x << ", " << this->y << ")" << endl;
+    cout << "Square coordinates: " << this->x << ", " << this->y <<  endl;
     cout << "Side length: " << this->side << endl;
-    cout << "Angle of rotation (in degrees): " << this->angle << endl;
+    cout << "Angle of rotation: " << this->angle << endl;
     cout << "Area: " << this->getArea() << endl;
   }
 };
@@ -65,17 +65,17 @@ int main() {
   cout << endl;
 
   if (s1 == s2)
-    cout << "Area of Square 1 is equal to area of Square 2" << endl;
+    cout << "Area of Square 1 == area of Square 2" << endl;
   else
-    cout << "Area of Square 1 is not equal to area of Square 2" << endl;
+    cout << "Area of Square 1 != area of Square 2" << endl;
 
   Square s3 = s2 * 2;
-  cout << "Square 3 (twice the size of Square 2):" << endl;
+  cout << "Square 3 (Square 2 * 2):" << endl;
   s3.print();
   cout << endl;
 
   Square s4 = s1 + s2;
-  cout << "Square 4 (result of adding Square 1 and Square 2):" << endl;
+  cout << "Square 4 (Square 1 + Square 2):" << endl;
   s4.print();
   cout << endl;
 
