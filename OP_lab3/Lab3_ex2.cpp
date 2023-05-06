@@ -1,59 +1,82 @@
 #include <iostream>
 using namespace std;
 
-const int MAX_SIZE = 100;
-
 class Stack {
-
 private:
-  int elements[MAX_SIZE];
-  int top_pos = -1;
+  int* arr;
+  int size;
+  int top_pos;
+
 public:
+  Stack() {
+    size = 10;
+    arr = new int[size];
+    top_pos = -1;
+  }
+
+  Stack(int s) {
+    size = s;
+    arr = new int[size];
+    top_pos = -1;
+  }
+
+  ~Stack() {
+    delete[] arr;
+  }
 
   void push(int value) {
-    if (top_pos >= MAX_SIZE) {
-      throw "Stak overflow";
+    if (top_pos == size - 1) {
+      int* newArr = new int[size * 2];
+      for (int i = 0; i < size; i++) {
+        newArr[i] = arr[i];
+      }
+      delete[] arr;
+      arr = newArr;
+      size *= 2;
     }
-    top_pos++;
-    elements[top_pos] = value;
+    arr[++top_pos] = value;
   }
 
   int pop() {
-    if (top_pos < 0) {
-      throw "Stack is empty";
+    if (top_pos == -1) {
+      return -1;
     }
-    int value = elements[top_pos];
-    top_pos--;
-    return value;
+    return arr[top_pos--];
   }
 
-  friend ostream& operator<<(ostream& ost, const Stack& stack) {
-    ost << "Stack: ";
-    for (int i = stack.top_pos; i >= 0; i--) {
-      ost << stack.elements[i] << ' ';
+  void display() {
+    if (top_pos == -1) {
+      cout << "Stack is empty" << endl;
+      return;
     }
-    return ost;
+    cout << "Stack: ";
+    for (int i = top_pos; i >= 0; i--) {
+      cout << arr[i] << " ";
+    }
+    cout << endl;
   }
-  friend istream& operator>>(istream& ist, Stack& stack) {
-    int value;
-    ist >> value;
-    stack.push(value);
-    return ist;
 
+  const Stack& operator<<(int value) {
+    push(value);
+    return *this;
   }
+
+  const Stack& operator>>(int& value) {
+    value = pop();
+    return *this;
+  }
+
 };
 
-
 int main() {
-
   Stack stack;
-  cout << stack << endl;
-  stack.push(4);
-  stack.push(8);
-  stack.push(16);
-  cout << stack << endl;
-  cout << "Deleted element: " << stack.pop() << endl;
-  cout << stack;
-
+  stack << 1;
+  stack << 2;
+  stack << 3;
+  stack.display();
+  int val;
+  stack >> val;
+  cout << val << endl;
+  stack.display();
   return 0;
 }
