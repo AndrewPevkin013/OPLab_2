@@ -1,32 +1,7 @@
-# Prerequisites
-*.d
+# Compiled Object filescmake_minimum_required(VERSION 3.25)
+project(untitled4)
 
-# Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
+set(CMAKE_CXX_STANDARD 20)
 
-# Precompiled Headers
-*.gch
-*.pch
+add_executable(untitled4 main.cpp Figures/FigureSystem.cpp Figures/FigureSystem.h Figures/IPhysObject.h Figures/Figure.h Figures/CVector2D.h Figures/IPrintable.h Figures/Trapezium.cpp Figures/Trapezium.h Figures/LineSegment.cpp Figures/LineSegment.h)
 
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
-
-# Fortran module files
-*.mod
-*.smod
-
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
-
-# Executables
-*.exe
-*.out
-*.app
